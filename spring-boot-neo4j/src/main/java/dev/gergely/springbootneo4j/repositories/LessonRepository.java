@@ -1,0 +1,11 @@
+package dev.gergely.springbootneo4j.repositories;
+
+import dev.gergely.springbootneo4j.models.Lesson;
+import org.springframework.data.neo4j.repository.Neo4jRepository;
+import org.springframework.data.neo4j.repository.query.Query;
+
+import java.util.List;
+public interface LessonRepository  extends Neo4jRepository<Lesson, Long> {
+    @Query("MATCH (:Course{identifier:$identifier})<-[r:BELONGS_TO]-(l:Lesson) RETURN lessons")
+    List<Lesson> findLessonsByCourseIdentifier(String identifier);
+}

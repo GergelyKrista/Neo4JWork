@@ -1,25 +1,18 @@
 package dev.gergely.springbootneo4j.models;
+
+
 import org.springframework.data.neo4j.core.schema.GeneratedValue;
 import org.springframework.data.neo4j.core.schema.Id;
 import org.springframework.data.neo4j.core.schema.Node;
 
 @Node
-public class Course {
+public class Lesson {
     @Id @GeneratedValue
     private Long id;
-    private String identifier;
     private String title;
-    private String teacher;
+    private String identifier;
 
-    public Course() {
-    }
-
-    public String getIdentifier() {
-        return identifier;
-    }
-
-    public void setIdentifier(String identifier) {
-        this.identifier = identifier;
+    public Lesson() {
     }
 
     public String getTitle() {
@@ -30,12 +23,11 @@ public class Course {
         this.title = title;
     }
 
-    public String getTeacher() {
-        return teacher;
+    public String getIdentifier() {
+        return identifier;
     }
 
-    public void setTeacher(String teacher) {
-        this.teacher = teacher;
+    public void setIdentifier(String identifier) {
+        this.identifier = identifier;
     }
-
 }
