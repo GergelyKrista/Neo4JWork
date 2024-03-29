@@ -34,6 +34,7 @@ public class CourseEnrolmentController {
                 (course) -> {
                     CourseDTO responseCourse = new CourseDTO(course.getIdentifier(), course.getTitle(), course.getTeacher());
                     responseCourse.setLessons(lessonService.getAllLessonsByCourseIdentifier(course.getIdentifier()));
+                    responseCourse.setEnrolled(true);
 
                     return responseCourse;
                 }
@@ -43,7 +44,7 @@ public class CourseEnrolmentController {
     }
     @PostMapping("/")
     public ResponseEntity<CourseEnrolmentDTO> enrollIn(@RequestBody CourseEnrolmentRequest request, Principal principal) {
-        CourseEnrolmentQueryResult enrolmentQueryResult = courseEnrolmentService.enrollIn(principal.getName(), request.getIdentifier());
+        CourseEnrolmentQueryResult enrolmentQueryResult = courseEnrolmentService.enrollIn(principal.getName(), request.getCourseIdentifier());
 
         CourseEnrolmentDTO  responseEnrolment= new CourseEnrolmentDTO(
                 enrolmentQueryResult.getUser().getUsername(),
